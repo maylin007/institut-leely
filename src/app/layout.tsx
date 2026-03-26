@@ -47,6 +47,16 @@ export default function RootLayout({
   return (
     <html lang="fr" className={`${inter.variable} ${cormorant.variable}`}>
       <body className="min-h-screen flex flex-col">
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BeautySalon",
+          "name": "Institut de Beauté Leely",
+          "address": { "@type": "PostalAddress", "streetAddress": "46 Rue Georges Lagarde", "addressLocality": "Papeete", "postalCode": "98713", "addressCountry": "PF" },
+          "telephone": "+68940426642",
+          "openingHours": "Mo-Sa 08:00-18:00",
+          "url": "https://institut-leely.vercel.app",
+          "sameAs": ["https://www.facebook.com/InstitutLeely/"]
+        })}} />
         <Navigation />
         <main className="flex-1">{children}</main>
         <Footer />

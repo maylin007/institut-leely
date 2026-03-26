@@ -84,7 +84,7 @@ export default function Navigation() {
           <button
             onClick={() => setIsOpen(!isOpen)}
             className="md:hidden flex flex-col gap-1.5 p-2"
-            aria-label="Menu"
+            aria-label="Menu" aria-expanded={isOpen}
           >
             {[0, 1, 2].map((i) => (
               <span
