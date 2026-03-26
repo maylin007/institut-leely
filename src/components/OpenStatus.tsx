@@ -1,15 +1,17 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useLanguage } from "@/lib/LanguageContext";
+import { translations } from "@/lib/translations";
 
 const hours = [
-  { day: "Lundi", open: 8, close: 18 },
-  { day: "Mardi", open: 8, close: 18 },
-  { day: "Mercredi", open: 8, close: 18 },
-  { day: "Jeudi", open: 8, close: 18 },
-  { day: "Vendredi", open: 8, close: 18 },
-  { day: "Samedi", open: 8, close: 18 },
-  { day: "Dimanche", open: -1, close: -1 },
+  { open: 8, close: 18 },
+  { open: 8, close: 18 },
+  { open: 8, close: 18 },
+  { open: 8, close: 18 },
+  { open: 8, close: 18 },
+  { open: 8, close: 18 },
+  { open: -1, close: -1 },
 ];
 
 function getTahitiTime() {
@@ -35,6 +37,9 @@ export function HoursTable() {
     isOpen: boolean;
     dayIndex: number;
   } | null>(null);
+  const { lang } = useLanguage();
+  const t = translations.openStatus;
+  const dayNames = t.days[lang];
 
   useEffect(() => {
     setStatus(getStatus());
@@ -50,13 +55,13 @@ export function HoursTable() {
 
         return (
           <div
-            key={h.day}
+            key={dayNames[i]}
             className={`flex items-center justify-between py-3 border-b border-divider/50 text-[15px] ${
               isToday ? "text-dark" : "text-muted"
             }`}
           >
             <div className="flex items-center gap-3">
-              <span className={isToday ? "font-medium" : ""}>{h.day}</span>
+              <span className={isToday ? "font-medium" : ""}>{dayNames[i]}</span>
               {isToday && (
                 <span className="flex items-center gap-1.5 text-[11px] tracking-wider uppercase">
                   <span
@@ -65,14 +70,14 @@ export function HoursTable() {
                     }`}
                   />
                   <span className={isOpen ? "text-green-600" : "text-red-400"}>
-                    {isOpen ? "Ouvert" : "Fermé"}
+                    {isOpen ? t.ouvert[lang] : t.ferme[lang]}
                   </span>
                 </span>
               )}
             </div>
             <span className={h.open < 0 ? "text-muted/50" : ""}>
               {h.open < 0
-                ? "Fermé"
+                ? t.ferme[lang]
                 : `${String(h.open).padStart(2, "0")}h — ${String(h.close).padStart(2, "0")}h`}
             </span>
           </div>

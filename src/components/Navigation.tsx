@@ -3,19 +3,25 @@
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
-
-const links = [
-  { href: "/", label: "Accueil" },
-  { href: "/soins", label: "Nos Soins" },
-  { href: "/a-propos", label: "L'Institut" },
-  { href: "/contact", label: "Contact" },
-];
+import { useLanguage } from "@/lib/LanguageContext";
+import { translations } from "@/lib/translations";
+import LanguageToggle from "@/components/LanguageToggle";
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
   const isHome = pathname === "/";
   const [scrolled, setScrolled] = useState(!isHome);
+  const { lang } = useLanguage();
+
+  const t = translations.nav;
+
+  const links = [
+    { href: "/", label: t.accueil[lang] },
+    { href: "/soins", label: t.soins[lang] },
+    { href: "/a-propos", label: t.institut[lang] },
+    { href: "/contact", label: t.contact[lang] },
+  ];
 
   useEffect(() => {
     if (!isHome) {
@@ -73,36 +79,40 @@ export default function Navigation() {
                 {link.label}
               </Link>
             ))}
+            <LanguageToggle scrolled={scrolled} />
             <a
               href="tel:+68940426642"
               className="text-[13px] tracking-wide uppercase border border-brand bg-brand text-white px-5 py-2.5 transition-all duration-300 hover:bg-brand-dark hover:border-brand-dark"
             >
-              Rendez-vous
+              {t.rdv[lang]}
             </a>
           </div>
 
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden flex flex-col gap-1.5 p-2"
-            aria-label="Menu" aria-expanded={isOpen}
-          >
-            {[0, 1, 2].map((i) => (
-              <span
-                key={i}
-                className={`w-6 h-px transition-all duration-300 ${
-                  scrolled ? "bg-dark" : "bg-white"
-                } ${
-                  isOpen && i === 0
-                    ? "rotate-45 translate-y-[4px]"
-                    : isOpen && i === 1
-                      ? "opacity-0"
-                      : isOpen && i === 2
-                        ? "-rotate-45 -translate-y-[4px]"
-                        : ""
-                }`}
-              />
-            ))}
-          </button>
+          <div className="flex items-center gap-3 md:hidden">
+            <LanguageToggle scrolled={scrolled} />
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="flex flex-col gap-1.5 p-2"
+              aria-label="Menu" aria-expanded={isOpen}
+            >
+              {[0, 1, 2].map((i) => (
+                <span
+                  key={i}
+                  className={`w-6 h-px transition-all duration-300 ${
+                    scrolled ? "bg-dark" : "bg-white"
+                  } ${
+                    isOpen && i === 0
+                      ? "rotate-45 translate-y-[4px]"
+                      : isOpen && i === 1
+                        ? "opacity-0"
+                        : isOpen && i === 2
+                          ? "-rotate-45 -translate-y-[4px]"
+                          : ""
+                  }`}
+                />
+              ))}
+            </button>
+          </div>
         </div>
       </div>
 
@@ -128,7 +138,7 @@ export default function Navigation() {
             href="tel:+68940426642"
             className="mt-4 text-center text-[13px] tracking-wide uppercase border border-brand bg-brand text-white px-5 py-3"
           >
-            Rendez-vous — 40 42 66 42
+            {t.rdv[lang]} — 40 42 66 42
           </a>
         </div>
       </div>

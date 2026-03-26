@@ -1,49 +1,30 @@
+"use client";
+
 import Link from "next/link";
 import AnimatedSection from "@/components/AnimatedSection";
+import { useLanguage } from "@/lib/LanguageContext";
+import { translations } from "@/lib/translations";
 
-const services = [
-  {
-    title: "Maquillage Semi-Permanent",
-    description: "Sourcils, eye-liner, lèvres — un regard sublimé au quotidien.",
-    image: "https://imgs.search.brave.com/kMKypnZZVNgp-ZZHVhK5NIQpdDOXDzv3XeJ__48LZIo/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9lc3Ro/ZXRpcXVlLXRyZW1v/aWxsZS5jb20vYXBw/L3VwbG9hZHMvMjAy/Mi8xMi9zb3VyY2ls/cy10cmVtb2lsbGUt/cGFyaXMtMS1zY2Fs/ZWQuanBn",
-    href: "/soins#semi-permanent",
-  },
-  {
-    title: "Soins du Visage",
-    description: "Hydratants, anti-âge, éclat — des protocoles sur-mesure.",
-    image: "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=600&q=80",
-    href: "/soins#visage",
-  },
-  {
-    title: "Massages",
-    description: "Relaxants et modelants, une parenthèse de bien-être.",
-    image: "https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?w=600&q=80",
-    href: "/soins#massages",
-  },
-  {
-    title: "Épilation",
-    description: "Techniques douces pour une peau nette et soyeuse.",
-    image: "https://imgs.search.brave.com/TdYV_s7dM6am6rr1fwzMoIORXFzmqeMZTbHzmThiSKk/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/cGhvdG9zLXByZW1p/dW0vbWFpdHJlLWFw/cGxpcXVlLWNpcmUt/ZXBpbGVyLXJvc2Ut/amFtYmUtamV1bmUt/ZmVtbWUtcG91ci1l/cGlsYXRpb24tZXBp/bGF0aW9uLWNpcmVf/Mjg5ODM2LTY1Ni5q/cGc_c2VtdD1haXNf/aHlicmlkJnc9NzQw/JnE9ODA",
-    href: "/soins#epilation",
-  },
+const serviceImages = [
+  "https://imgs.search.brave.com/kMKypnZZVNgp-ZZHVhK5NIQpdDOXDzv3XeJ__48LZIo/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9lc3Ro/ZXRpcXVlLXRyZW1v/aWxsZS5jb20vYXBw/L3VwbG9hZHMvMjAy/Mi8xMi9zb3VyY2ls/cy10cmVtb2lsbGUt/cGFyaXMtMS1zY2Fs/ZWQuanBn",
+  "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=600&q=80",
+  "https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?w=600&q=80",
+  "https://imgs.search.brave.com/TdYV_s7dM6am6rr1fwzMoIORXFzmqeMZTbHzmThiSKk/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/cGhvdG9zLXByZW1p/dW0vbWFpdHJlLWFw/cGxpcXVlLWNpcmUt/ZXBpbGVyLXJvc2Ut/amFtYmUtamV1bmUt/ZmVtbWUtcG91ci1l/cGlsYXRpb24tZXBp/bGF0aW9uLWNpcmVf/Mjg5ODM2LTY1Ni5q/cGc_c2VtdD1haXNf/aHlicmlkJnc9NzQw/JnE9ODA",
 ];
 
-const testimonials = [
-  {
-    name: "Vaiana M.",
-    text: "Leely est mon institut depuis 10 ans. Le semi-permanent des sourcils a changé ma routine beauté.",
-  },
-  {
-    name: "Marie-Line T.",
-    text: "Un accueil toujours chaleureux et des soins du visage qui font vraiment la différence.",
-  },
-  {
-    name: "Hina R.",
-    text: "Le massage relaxant est un pur moment de bonheur. L'ambiance est apaisante, on se sent comme chez soi.",
-  },
+const serviceHrefs = [
+  "/soins#semi-permanent",
+  "/soins#visage",
+  "/soins#massages",
+  "/soins#epilation",
 ];
 
 export default function Home() {
+  const { lang } = useLanguage();
+  const t = translations.home;
+  const services = t.services[lang];
+  const testimonials = t.testimonials[lang];
+
   return (
     <>
       {/* Hero — full screen */}
@@ -61,22 +42,21 @@ export default function Home() {
         <div className="relative z-10 text-center px-6 max-w-3xl mx-auto">
           <AnimatedSection>
             <p className="text-[11px] tracking-[0.3em] uppercase text-white/50 mb-8">
-              Papeete, Tahiti — Depuis 1993
+              {t.heroSubtitle[lang]}
             </p>
           </AnimatedSection>
 
           <AnimatedSection delay={0.2}>
             <h1 className="font-[family-name:var(--font-display)] text-5xl sm:text-6xl md:text-7xl font-light text-white leading-[1.1] mb-8">
-              Révélez votre
+              {t.heroTitle1[lang]}
               <br />
-              <span className="text-brand-200">beauté naturelle</span>
+              <span className="text-brand-200">{t.heroTitle2[lang]}</span>
             </h1>
           </AnimatedSection>
 
           <AnimatedSection delay={0.4}>
             <p className="text-white/60 text-base sm:text-lg max-w-xl mx-auto mb-12 leading-relaxed font-light">
-              Spécialiste du maquillage semi-permanent et des soins esthétiques
-              depuis plus de 30 ans.
+              {t.heroDescription[lang]}
             </p>
           </AnimatedSection>
 
@@ -86,13 +66,13 @@ export default function Home() {
                 href="tel:+68940426642"
                 className="bg-brand text-white px-8 py-4 text-[13px] tracking-wider uppercase transition-all duration-300 hover:bg-brand-dark"
               >
-                Prendre rendez-vous
+                {t.ctaRdv[lang]}
               </a>
               <Link
                 href="/soins"
                 className="border border-white/30 text-white px-8 py-4 text-[13px] tracking-wider uppercase transition-all duration-300 hover:bg-white/10"
               >
-                Découvrir nos soins
+                {t.ctaSoins[lang]}
               </Link>
             </div>
           </AnimatedSection>
@@ -105,20 +85,20 @@ export default function Home() {
           <AnimatedSection>
             <div className="text-center mb-20">
               <p className="text-[11px] tracking-[0.3em] uppercase text-accent mb-4">
-                Nos expertises
+                {t.expertises[lang]}
               </p>
               <h2 className="font-[family-name:var(--font-display)] text-4xl sm:text-5xl font-light text-dark">
-                Des soins d&apos;exception
+                {t.soinsException[lang]}
               </h2>
             </div>
           </AnimatedSection>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-1">
             {services.map((service, i) => (
-              <AnimatedSection key={service.title} delay={i * 0.1}>
-                <Link href={service.href} className="group block relative overflow-hidden aspect-[4/3]">
+              <AnimatedSection key={i} delay={i * 0.1}>
+                <Link href={serviceHrefs[i]} className="group block relative overflow-hidden aspect-[4/3]">
                   <img
-                    src={service.image}
+                    src={serviceImages[i]}
                     alt={service.title}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
@@ -141,7 +121,7 @@ export default function Home() {
               href="/soins"
               className="inline-block border border-dark text-dark px-8 py-4 text-[13px] tracking-wider uppercase transition-all duration-300 hover:bg-dark hover:text-white"
             >
-              Voir tous nos soins
+              {t.voirTousSoins[lang]}
             </Link>
           </div>
         </div>
@@ -161,25 +141,18 @@ export default function Home() {
           <AnimatedSection className="flex items-center px-8 lg:px-20 py-20">
             <div>
               <p className="text-[11px] tracking-[0.3em] uppercase text-accent mb-4">
-                Notre spécialité
+                {t.specialite[lang]}
               </p>
               <h2 className="font-[family-name:var(--font-display)] text-3xl sm:text-4xl font-light text-dark mb-8 leading-tight">
-                Maquillage
+                {t.semiPermanentTitle1[lang]}
                 <br />
-                Semi-Permanent
+                {t.semiPermanentTitle2[lang]}
               </h2>
               <p className="text-muted leading-relaxed mb-8 text-[15px]">
-                Depuis 1993, nous sublimons votre regard grâce au maquillage
-                semi-permanent. Formée à Paris auprès des plus grands experts,
-                notre esthéticienne maîtrise les techniques les plus avancées
-                pour un résultat naturel et durable.
+                {t.semiPermanentDesc[lang]}
               </p>
               <ul className="space-y-4 mb-10">
-                {[
-                  "Sourcils — restructuration et densification",
-                  "Eye-liner — regard intense et défini",
-                  "Lèvres — contour et couleur naturelle",
-                ].map((item) => (
+                {t.semiPermanentItems[lang].map((item) => (
                   <li key={item} className="flex items-center gap-3 text-[15px]">
                     <span className="w-5 h-px bg-brand" />
                     <span className="text-dark">{item}</span>
@@ -190,7 +163,7 @@ export default function Home() {
                 href="/soins#semi-permanent"
                 className="inline-block border border-dark text-dark px-8 py-4 text-[13px] tracking-wider uppercase transition-all duration-300 hover:bg-dark hover:text-white"
               >
-                En savoir plus
+                {t.enSavoirPlus[lang]}
               </Link>
             </div>
           </AnimatedSection>
@@ -203,24 +176,24 @@ export default function Home() {
           <AnimatedSection>
             <div className="text-center mb-20">
               <p className="text-[11px] tracking-[0.3em] uppercase text-accent mb-4">
-                Témoignages
+                {t.temoignages[lang]}
               </p>
               <h2 className="font-[family-name:var(--font-display)] text-4xl sm:text-5xl font-light text-dark">
-                Ce que disent nos clientes
+                {t.ceQueDisent[lang]}
               </h2>
             </div>
           </AnimatedSection>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-            {testimonials.map((t, i) => (
-              <AnimatedSection key={t.name} delay={i * 0.15}>
+            {testimonials.map((testimonial, i) => (
+              <AnimatedSection key={testimonial.name} delay={i * 0.15}>
                 <div className="text-center">
                   <p className="text-muted leading-relaxed italic text-[15px] mb-6">
-                    &ldquo;{t.text}&rdquo;
+                    &ldquo;{testimonial.text}&rdquo;
                   </p>
                   <div className="w-8 h-px bg-brand mx-auto mb-4" />
                   <p className="text-[13px] tracking-wide uppercase text-dark">
-                    {t.name}
+                    {testimonial.name}
                   </p>
                 </div>
               </AnimatedSection>

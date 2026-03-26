@@ -4,6 +4,7 @@ import "./globals.css";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import { LanguageProvider } from "@/lib/LanguageContext";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -57,9 +58,11 @@ export default function RootLayout({
           "url": "https://institut-leely.vercel.app",
           "sameAs": ["https://www.facebook.com/InstitutLeely/"]
         })}} />
-        <Navigation />
-        <main className="flex-1">{children}</main>
-        <Footer />
+        <LanguageProvider>
+          <Navigation />
+          <main className="flex-1">{children}</main>
+          <Footer />
+        </LanguageProvider>
         <WhatsAppButton />
       </body>
     </html>
