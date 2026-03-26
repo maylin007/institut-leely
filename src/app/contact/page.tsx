@@ -52,6 +52,13 @@ export default function ContactPage() {
 
                   <div className="border-t border-divider pt-10">
                     <p className="text-[11px] tracking-[0.3em] uppercase text-accent mb-4">
+                      Facebook
+                    </p>
+                    <a href="https://www.facebook.com/InstitutLeely/" target="_blank" rel="noopener noreferrer" className="text-dark text-[15px] hover:text-brand transition-colors">Institut de Beaute Leely</a>
+                  </div>
+
+                  <div className="border-t border-divider pt-10">
+                    <p className="text-[11px] tracking-[0.3em] uppercase text-accent mb-4">
                       Adresse
                     </p>
                     <p className="text-dark text-[15px]">46 Rue Georges Lagarde</p>
