@@ -18,12 +18,13 @@ const cormorant = Cormorant_Garamond({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://institut-leely.vercel.app"),
   title: {
     default: "Institut de Beauté Leely — Papeete, Tahiti",
     template: "%s — Institut Leely",
   },
   description:
-    "Institut de beauté à Papeete depuis 1993. Spécialiste du maquillage semi-permanent, soins du visage, massages, épilations. Sur rendez-vous au 40 42 66 42.",
+    "Institut de beauté à Papeete depuis 1993. Spécialiste du maquillage semi-permanent, soins du visage, massages et épilations. Rendez-vous au 40 42 66 42.",
   keywords: [
     "institut beauté Papeete",
     "maquillage semi-permanent Tahiti",
@@ -31,6 +32,10 @@ export const metadata: Metadata = {
     "massage Papeete",
     "épilation Tahiti",
   ],
+  alternates: {
+    canonical: "https://institut-leely.vercel.app",
+    languages: { "fr": "https://institut-leely.vercel.app", "en": "https://institut-leely.vercel.app" },
+  },
   openGraph: {
     title: "Institut de Beauté Leely — Papeete, Tahiti",
     description:
@@ -56,6 +61,10 @@ export default function RootLayout({
           "telephone": "+68940426642",
           "openingHours": "Mo-Sa 08:00-18:00",
           "url": "https://institut-leely.vercel.app",
+          "description": "Institut de beauté à Papeete depuis 1993. Spécialiste du maquillage semi-permanent, soins du visage, massages et épilations.",
+          "foundingDate": "1993",
+          "priceRange": "$$",
+          "geo": { "@type": "GeoCoordinates", "latitude": -17.5418, "longitude": -149.568 },
           "sameAs": ["https://www.facebook.com/InstitutLeely/"]
         })}} />
         <LanguageProvider>
