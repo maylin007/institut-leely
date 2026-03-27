@@ -4,6 +4,7 @@ import "./globals.css";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import ChatWidget from "@/components/ChatWidget";
 import { LanguageProvider } from "@/lib/LanguageContext";
 
 const inter = Inter({
@@ -73,6 +74,7 @@ export default function RootLayout({
           <Footer />
         </LanguageProvider>
         <WhatsAppButton />
+        <ChatWidget />
       </body>
     </html>
   );
